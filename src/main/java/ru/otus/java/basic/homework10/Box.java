@@ -58,9 +58,9 @@ public class Box {
 
     @Override
     public String toString() {
-        return "Коробка размера " + size1 + "x" + size2 + "x" + size3 +
-                ", Цвет: " + colour +
-                ", Состояние: " + (isOpen?"Открыта":"Закрыта") +
-                ", в коробке " + (item.length()>0?this.item:"пусто");
+        return "Коробка размера " + this.size1 + "x" + this.size2 + "x" + this.size3 +
+                ", Цвет: " + this.colour +
+                ", Состояние: " + (this.isOpen?"Открыта":"Закрыта") +
+                ", в коробке " + (this.item.length()>0?this.item:"пусто");
     }
 }
