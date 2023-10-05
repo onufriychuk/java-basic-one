@@ -3,6 +3,12 @@ package ru.otus.java.basic.homework7;
 public class MainApp {
     public static void main(String[] args) {
         int[][] arr = new int[10][10];
+        int[][] arr2 = {
+                {5,6,8},
+                {4,2,7,5,2},
+                {9,0,2,1,5,6},
+                {2,3}
+        };
         fillArray(arr);
         printArray(arr);
 
@@ -16,6 +22,26 @@ public class MainApp {
         System.out.println("Максимальное значение: " + findMax(arr)); //4
 
         System.out.println("Сумма элементов 2 строки: " + sumSecondRow(arr)); //5
+
+        columnSum(arr2,7);
+    }
+
+    // * реализовать метод, который считает сумму элементов i-го столбца
+    public static void columnSum(int[][] arr, int column) {
+        int sum = 0;
+        boolean isSumChanged = false;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i].length < column) {
+                continue;
+            }
+            sum += arr[i][column-1];
+            isSumChanged = true;
+        }
+        if (!isSumChanged) {
+            System.out.println("Не найден ни один элемент столбца " + column);
+        } else {
+            System.out.println("Сумма элементов столбца " + column + " равна: " + sum);
+        }
     }
 
     //Реализовать метод sumOfPositiveElements(..), принимающий в качестве аргумента целочисленный двумерный
