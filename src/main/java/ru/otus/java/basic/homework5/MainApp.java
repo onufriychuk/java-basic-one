@@ -9,11 +9,10 @@ public class MainApp {
         int[] arr3 = {1, 0, 1};
         int[] arr4 = {2, 3, 2, 4};
 
-        arrEquillibriumPointer(arr1); //*1
-//        sumArrays(arr1, arr2, arr3, arr4); //*2
+//        sumArrays(arr1, arr2, arr3, arr4); //*1
+//        arrEquillibriumPointer(arr1); //*2
 //        arraySortChecker(arr2, true); //*3
 //        reverseArr(arr1); //*4
-
 //        printString("Hello", 5);
 //        sumArr(arr);
 //        fillArr(5, arr2 );
@@ -23,7 +22,6 @@ public class MainApp {
 
     //задача *1, получить массив, равный сумме массивов
     public static void sumArrays(int[]... arrays) {
-        int digit = 0;
         int maxLength = 0;
 
         for (int i = 0; i < arrays.length; i++) {
@@ -33,11 +31,9 @@ public class MainApp {
         }
         int[] outArr = new int[maxLength];
 
-        for (int i = 0; i < maxLength; i++) {
-            for (int j = 0; j < arrays.length; j++) {
-                if (arrays[j].length > i) {
-                    outArr[i] += arrays[j][i];
-                }
+        for (int i = 0; i < arrays.length; i++) {
+            for (int j = 0; j < arrays[i].length; j++) {
+                outArr[j] += arrays[i][j];
             }
         }
         System.out.println(Arrays.toString(outArr));
@@ -45,54 +41,38 @@ public class MainApp {
 
     //задача *2, есть ли точка в массиве, в которой суммы левой и правой частей равны
     public static void arrEquillibriumPointer(int[] arr) {
-        int lPointer = 0;
-        int rPointer = arr.length - 1;
-        int lSum = arr[lPointer];
-        int rSum = arr[rPointer];
-        for (int i = 0; i < arr.length - 1; i++) {
-            //System.out.println("lP=" + lPointer + ", rP=" + rPointer + ", lS=" + lSum + ", rS=" + rSum);
-            if (rPointer - lPointer == 1) {
-                if (lSum == rSum) {
-                    System.out.println("Удача! Для этого массива есть такая точка!");
-                } else {
-                    System.out.println("Для этого массива решения нет.");
-                }
-            } else if (rPointer == lPointer && arr[lPointer] == 0) {
-                System.out.println("Ого! Для этого массива есть несколько решений!");
-                break;
-            }
-            if (lSum < rSum) {
-                lPointer++;
-                lSum += arr[lPointer];
-            } else if (lSum > rSum) {
-                rPointer--;
-                rSum += arr[rPointer];
-            } else {
-                lPointer++;
-                rPointer--;
-                lSum += arr[lPointer];
-                rSum += arr[rPointer];
+        int sum = 0;
+        int[] arrayOfSum = new int[arr.length];
+        for (int i = 0; i < arr.length; i++) {
+            arrayOfSum[i] = sum + arr[i];
+            sum += arr[i];
+        }
+        for (int i = 0; i < arrayOfSum.length; i++) {
+            if (arrayOfSum[i] == (sum - arrayOfSum[i])) {
+                System.out.println("Удача! Для этого массива есть такая точка!");
+                return;
             }
         }
+        System.out.println("Для этого массива решения нет.");
     }
 
     //задача *3, проверить, верно ли отсортирован массив
     public static void arraySortChecker(int[] arr, boolean asc) {
-        boolean flag = false;
+        boolean nonSorted = false;
         for (int i = 1; i < arr.length; i++) {
             if (asc) {
                 if (arr[i] < arr[i - 1]) {
-                    flag = true;
+                    nonSorted = true;
                     break;
                 }
             } else {
                 if (arr[i] > arr[i - 1]) {
-                    flag = true;
+                    nonSorted = true;
                     break;
                 }
             }
         }
-        if (flag) {
+        if (nonSorted) {
             System.out.println("Массив не отсортирован");
         } else {
             System.out.println("Массив отсортирован верно");
@@ -101,8 +81,6 @@ public class MainApp {
 
     //задача *4, перевернуть массив, не используя вспомогательных массивов
     public static void reverseArr(int[] arr) {
-        int lPointer = 0;
-        int rPointer = arr.length;
         int value = 0;
         for (int i = 0; i < arr.length / 2; i++) {
             value = arr[i];
