@@ -14,7 +14,7 @@ public class Main {
         User user10 = new User("Ivanov", "Vladimir", "Maximovich", 1990, "ivm90@ya.ru");
         User[] users = {user1, user2, user3, user4, user5, user6, user7, user8, user9, user10};
         for (int i = 0; i < users.length; i++) {
-            if (2023 - users[i].yearOfBirth >= 40) {
+            if (2023 - users[i].getYearOfBirth() >= 40) {
                 users[i].print();
             }
         }
