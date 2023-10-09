@@ -10,6 +10,7 @@ public class Bicycle  implements Transport {
             System.out.println("Велосипед тут не проедет");
             return false;
         }
+        System.out.println("Проехали " + distance + " км. на велосипеде");
         return true;
     }
 }

@@ -5,6 +5,11 @@ import ru.otus.java.basic.homework13.Transport;
 
 public class Horse  implements Transport {
     private int stamina;
+
+    public Horse(int stamina) {
+        this.stamina = stamina;
+    }
+
     @Override
     public boolean move(int distance, Terrain terrainType) {
         if (terrainType == Terrain.SWAMP) {
@@ -16,6 +21,7 @@ public class Horse  implements Transport {
             return false;
         }
         stamina -= 0.25 * distance;
+        System.out.println("Проскакали " + distance + " км. на лошади");
         return true;
     }
 }
