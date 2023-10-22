@@ -30,9 +30,12 @@ public class Main {
     }
 
     public static int stringArraySum(String[][] array) {
-        if (array.length != 4 || array[0].length != 4) {
-            throw new AppArraySizeException("Неверный размер массива");
+        for (int i = 0; i < array.length; i++) {
+            if (array.length != 4 || array[i].length != 4) {
+                throw new AppArraySizeException("Неверный размер массива");
+            }
         }
+
         int sum = 0;
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array[i].length; j++) {
@@ -40,10 +43,6 @@ public class Main {
                     sum += Integer.parseInt(array[i][j]);
                 } catch (NumberFormatException e) {
                     throw new AppArrayDataException("Не могу преобразовать строку в число в a[" + i + "][" + j + "]");
-                } finally {
-                    array[i][j] = "0";
-                    sum += Integer.parseInt(array[i][j]);
-                    continue;
                 }
             }
         }
