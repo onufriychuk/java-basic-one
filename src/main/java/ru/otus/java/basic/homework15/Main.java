@@ -23,7 +23,7 @@ public class Main {
         employees.add(new Employee("Артём", 41));
 
         System.out.println(Stuff.getEmployeesNames(employees));
-        System.out.println(Stuff.getEmployeesNames(employees, 22));
+        System.out.println(Stuff.getEmployeesNamesOlderThan(employees, 22));
         System.out.println(Stuff.isAgeAverageMoreThan(employees, 23));
         System.out.println(Stuff.getYoungestEmployee(employees));
     }

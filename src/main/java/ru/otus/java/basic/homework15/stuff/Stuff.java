@@ -12,7 +12,7 @@ public class Stuff {
         return names;
     }
 
-    public static List<String> getEmployeesNames(List<Employee> list, int age) {
+    public static List<String> getEmployeesNamesOlderThan(List<Employee> list, int age) {
         List<String> employees = new ArrayList<>();
         for (Employee i : list) {
             if (i.getAge() >= age) {
