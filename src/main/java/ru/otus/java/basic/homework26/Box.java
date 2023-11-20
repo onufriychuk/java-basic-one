@@ -4,11 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Box<T extends Fruit> {
-    private List<T> fruits;
-
-    public Box(ArrayList<T> fruits) {
-        this.fruits = fruits;
-    }
+    private List<T> fruits = new ArrayList<>();
 
     public void addFruit(T fruit) {
         this.fruits.add(fruit);
@@ -26,8 +22,8 @@ public class Box<T extends Fruit> {
         return sum;
     }
 
-    public boolean compare(Box<?> anotherBox) {
-        return this.weight() == anotherBox.weight();
+    public boolean compare(Box<?> otherBox) {
+        return Math.abs(this.weight() - otherBox.weight()) < 0.000001;
     }
 
     public void fruitsOverflow(Box<? super T> otherBox) {
